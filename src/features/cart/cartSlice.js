@@ -56,19 +56,18 @@ const cartSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getCartItems.pending, (state) => {
-      state.isLoading = true;
-    });
-
-    builder.addCase(getCartItems.fulfilled, (state, action) => {
-      state.cartItems = action.payload;
-      state.isLoading = false;
-    });
-
-    builder.addCase(getCartItems.rejected, (state) => {
-      console.log(action.payload);
-      state.isLoading = false;
-    });
+    builder
+      .addCase(getCartItems.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCartItems.fulfilled, (state, action) => {
+        state.cartItems = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getCartItems.rejected, (state) => {
+        console.log(action.payload);
+        state.isLoading = false;
+      });
   },
 });
 
