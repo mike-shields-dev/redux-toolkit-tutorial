@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import Modal from './components/Modal';
 import CartContainer from "./components/CartContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <main>
+      <Modal />
       <Navbar />
       <CartContainer />
     </main>
