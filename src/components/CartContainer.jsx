@@ -2,26 +2,35 @@ import { useSelector } from 'react-redux'
 import CartItem from './CartItem'
 
 const CartContainer = () => {
-  const { cartItems, amount } = useSelector(store => store.cart);
+  const { cartItems, amount, total } = useSelector(store => store.cart);
   
-  if(amount < 1) {
     return (
       <section className="cart">
         <header>
           <h2>your bag</h2>
-          <h4 className="empty-cart">is currently empty</h4>
+          {amount < 1 &&
+            <h4 className="empty-cart">is empty</h4>
+          }
         </header>
+        
+        {amount > 0 &&
+          <div>
+            {cartItems.map(item => 
+              <CartItem key={item.id} {...item} />
+            )}
+          </div>
+        }
+        <footer>
+            <hr/>
+            <div className='cart-total'>
+              Total <span>{total}</span>
+            </div>
+            <button type="button" className="btn clear-btn">clear cart</button>
+          </footer> 
       </section>
     )
-  }
-
-  return (
-    <div>
-      {cartItems.map(cartItem => (
-        <CartItem key={cartItem.id} {...cartItem} />
-      ))}
-    </div>
-  )
 }
+
+
 
 export default CartContainer
