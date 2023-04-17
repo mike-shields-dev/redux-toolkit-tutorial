@@ -22,10 +22,22 @@ const cartSlice = createSlice({
             state.cartItems.filter(item => 
                 item.id !== itemId
             )
+        },
+        increase: (state, action) => {
+            const id = action.payload;
+            const cartItem = 
+            state.cartItems.find(item => item.id === id)
+            cartItem.amount += 1
+        }, 
+        decrease: (state, action) => {
+            const { id: itemId } = action.payload;
+            const cartItem = 
+            state.cartItems.find(item => item.id === itemId)
+            cartItem.amount = Math.max(1, cartItem - 1);
         }
     }, 
 });
 
-export const { clearCart, removeItem } = cartSlice.actions;
+export const { clearCart, removeItem, increase, decrease} = cartSlice.actions;
 export default cartSlice.reducer;
 
