@@ -23,7 +23,7 @@ const CartContainer = () => {
       <footer>
         <hr />
         <div className="cart-total">
-          Total <span>{total}</span>
+          Total <span>£{total}</span>
         </div>
         <button
           type="button"
