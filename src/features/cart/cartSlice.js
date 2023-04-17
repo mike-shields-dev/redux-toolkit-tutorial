@@ -26,9 +26,9 @@ const cartSlice = createSlice({
       cartItem.amount += 1;
     },
     decrease: (state, action) => {
-      const { id: itemId } = action.payload;
-      const cartItem = state.cartItems.find((item) => item.id === itemId);
-      cartItem.amount = Math.max(1, cartItem - 1);
+      const id = action.payload
+      const cartItem = state.cartItems.find((item) => item.id === id);
+      cartItem.amount = Math.max(1, cartItem.amount - 1);
     },
   },
 });
