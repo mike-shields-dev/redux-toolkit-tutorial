@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { closeModal } from "../features/modal/modalSlice";
 import { clearCart } from "../features/cart/cartSlice";
 
