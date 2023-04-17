@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import { clearCart } from "../features/cart/cartSlice";
+import { formatPrice } from "../utils/helpers";
 
 const CartContainer = () => {
   const { cartItems, amount, total } = useSelector((store) => store.cart);
@@ -9,7 +10,7 @@ const CartContainer = () => {
   return (
     <section className="cart">
       <header>
-        <h2>your bag</h2>
+        <h2>your cart</h2>
         {amount < 1 && <h4 className="empty-cart">is empty</h4>}
       </header>
 
@@ -23,7 +24,7 @@ const CartContainer = () => {
       <footer>
         <hr />
         <div className="cart-total">
-          Total <span>£{total}</span>
+          Total <span>{formatPrice(total)}</span>
         </div>
         <button
           type="button"
