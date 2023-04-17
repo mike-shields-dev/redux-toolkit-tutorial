@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   cartItems: [],
-  amount: 1,
+  amount: 0,
   total: 0,
   isLoading: true,
 };
@@ -38,19 +38,17 @@ const cartSlice = createSlice({
     decrease: (state, action) => {
       const id = action.payload;
       const cartItem = state.cartItems.find((item) => item.id === id);
-      cartItem.amount = Math.max(1, cartItem.amount - 1);
+      cartItem.amount -= 1;
     },
     calculateTotals: (state) => {
       const cartItems = state.cartItems;
-      const { total, amount } = cartItems.reduce(
-        (reduced, item) => {
-          reduced.amount += item.amount;
-          reduced.total += item.amount * item.price;
+      let total = 0, amount = 0;
+      
+      cartItems.forEach(cartItem => {
+        total += (cartItem.amount * cartItem.price);
+        amount += cartItem.amount;
+      });
 
-          return reduced;
-        },
-        { amount: 0, total: 0 }
-      );
       state.total = total;
       state.amount = amount;
     },

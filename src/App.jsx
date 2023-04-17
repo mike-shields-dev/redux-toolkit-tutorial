@@ -12,7 +12,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!cartItems.length) return;
     dispatch(calculateTotals());
   }, [cartItems]);
 
